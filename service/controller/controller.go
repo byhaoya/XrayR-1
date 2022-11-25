@@ -495,7 +495,7 @@ func (c *Controller) userInfoMonitor() (err error) {
 	limitedUsers := make([]api.UserInfo, 0)
 	for _, user := range *c.userList {
 		up, down, upCounter, downCounter := c.getTraffic(c.buildUserTag(&user))
-		if up > 0 || down > 0 {
+		if up > 1024 || down > 1024 {
 			// Over speed users
 			if AutoSpeedLimit > 0 {
 				if down > AutoSpeedLimit*1000000*UpdatePeriodic/8 || up > AutoSpeedLimit*1000000*UpdatePeriodic/8 {
